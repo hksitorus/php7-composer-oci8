@@ -1,5 +1,5 @@
-#all from https://github.com/FabriZZio/docker-php-oci8 untouched
-#just changed the base image to ours
+#all from https://github.com/FabriZZio/docker-php-oci8
+#just changed the base image to ours and some adjustment
 #FROM fabrizzio/docker-php:latest
 FROM hksitorus/php7-composer:latest
 #MAINTAINER Dieter Provoost <dieter.provoost@marlon.be>
@@ -9,7 +9,7 @@ ADD oracle/instantclient-basic-linux.x64-11.2.0.4.0.zip /tmp/instantclient-basic
 ADD oracle/instantclient-sdk-linux.x64-11.2.0.4.0.zip /tmp/instantclient-sdk-linux.x64-11.2.0.4.0.zip
 ADD oracle/instantclient-sqlplus-linux.x64-11.2.0.4.0.zip /tmp/instantclient-sqlplus-linux.x64-11.2.0.4.0.zip
 
-RUN apt-get install -y unzip
+RUN apt-get update -y
 
 RUN unzip /tmp/instantclient-basic-linux.x64-11.2.0.4.0.zip -d /usr/local/
 RUN unzip /tmp/instantclient-sdk-linux.x64-11.2.0.4.0.zip -d /usr/local/
@@ -23,4 +23,6 @@ RUN echo 'instantclient,/usr/local/instantclient' | pecl install oci8
 
 ADD php/oci8.ini /etc/php5/cli/conf.d/30-oci8.ini
 
-RUN apt-get clean -y
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/* /var/tmp/* && \
