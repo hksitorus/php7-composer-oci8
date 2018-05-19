@@ -21,6 +21,9 @@ RUN ln -s /usr/local/instantclient/sqlplus /usr/bin/sqlplus
 RUN apt-get install libaio-dev -y
 RUN echo 'instantclient,/usr/local/instantclient' | pecl install oci8
 
+RUN docker-php-ext-install zip
+RUN docker-php-ext-enable sqlsrv pdo_sqlsrv oci8
+
 ADD php/oci8.ini /etc/php5/cli/conf.d/30-oci8.ini
 
 RUN apt-get clean && \
