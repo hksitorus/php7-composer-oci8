@@ -25,4 +25,4 @@ ADD php/oci8.ini /etc/php5/cli/conf.d/30-oci8.ini
 
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    rm -rf /tmp/* /var/tmp/* && \
+    rm -rf /tmp/* /var/tmp/*
