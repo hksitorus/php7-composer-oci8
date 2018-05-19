@@ -1,5 +1,8 @@
-FROM fabrizzio/docker-php:latest
-MAINTAINER Dieter Provoost <dieter.provoost@marlon.be>
+#all from https://github.com/FabriZZio/docker-php-oci8 untouched
+#just changed the base image to ours
+#FROM fabrizzio/docker-php:latest
+FROM hksitorus/php7-composer:latest
+#MAINTAINER Dieter Provoost <dieter.provoost@marlon.be>
 
 # Oracle instantclient
 ADD oracle/instantclient-basic-linux.x64-11.2.0.4.0.zip /tmp/instantclient-basic-linux.x64-11.2.0.4.0.zip
