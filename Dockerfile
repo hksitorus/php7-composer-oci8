@@ -23,6 +23,7 @@ RUN echo 'instantclient,/usr/local/instantclient' | pecl install oci8
 
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install pcntl
+RUN docker-php-ext-install bcmath
 RUN docker-php-ext-enable sqlsrv pdo_sqlsrv oci8 pcntl
 
 ADD php/oci8.ini /etc/php5/cli/conf.d/30-oci8.ini
